@@ -44,3 +44,8 @@ def filter_df_green(dfin: pd.DataFrame, guess_green: list[str]) -> pd.DataFrame:
         return all([((word[num]==li_guess[num]) | (li_guess[num] is None)) for num in range(5)])
     dfout = dfin.copy()
     return dfout[dfout.vec_palav.apply(lambda x: filter_words(x, guess_green))]
+
+def filter_df_yelw(dfin: pd.DataFrame, guess_yelw: list[str]) -> pd.DataFrame:
+    dfout = dfin.copy()
+    df_masks= [dfout.palavras.str.contains(g_y) for g_y in guess_yelw]
+    return dfout[pd.concat(df_masks, axis=1).apply(lambda x: all(x), 1)]
