@@ -38,3 +38,9 @@ def create_dataset(dfin: pd.DataFrame) -> pd.DataFrame:
     dfout['count_vowels'] = dfout['vec_aeiou'].apply(max_letters)
     dfout['count_cons'] = dfout['vec_conso'].apply(max_letters)
     return dfout[['palavras', 'vec_palav', 'vec_aeiou', 'count_vowels', 'vec_conso', 'count_cons']]
+
+def filter_df_green(dfin: pd.DataFrame, guess_green: list[str]) -> pd.DataFrame:
+    def filter_words(word, li_guess=guess_green):
+        return all([((word[num]==li_guess[num]) | (li_guess[num] is None)) for num in range(5)])
+    dfout = dfin.copy()
+    return dfout[dfout.vec_palav.apply(lambda x: filter_words(x, guess_green))]
