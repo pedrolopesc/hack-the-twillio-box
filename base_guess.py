@@ -7,3 +7,7 @@ def read_database(addr: str='palavras.txt') -> pd.DataFrame:
         return re.findall(r'\w+', text)
     li_pal = list(set(words(open(addr,encoding="utf8").read())))
     return pd.DataFrame({'palavras': li_pal})
+
+def count_vowels(palavra: str) -> list[int]:
+    li_pal = list(map(palavra.count, "aeiou"))
+    return [int(bool(let)) for let in li_pal]
