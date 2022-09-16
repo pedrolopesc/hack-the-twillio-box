@@ -19,3 +19,6 @@ def count_consonants(palavra: str) -> list[int]:
 def has_wy(dfin: pd.DataFrame) -> pd.DataFrame:
     dfout = dfin[~dfin['palavras'].str.contains('w|y')].copy()
     return dfout
+
+def max_letters(li_vowels: list[int]) -> int:
+    return sum(li_vowels)
