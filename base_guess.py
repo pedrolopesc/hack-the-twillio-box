@@ -15,3 +15,7 @@ def count_vowels(palavra: str) -> list[int]:
 def count_consonants(palavra: str) -> list[int]:
     li_pal = list(map(palavra.count, "bcdfghjklmnpqrstvxz"))
     return [int(bool(let)) for let in li_pal]
+
+def has_wy(dfin: pd.DataFrame) -> pd.DataFrame:
+    dfout = dfin[~dfin['palavras'].str.contains('w|y')].copy()
+    return dfout
